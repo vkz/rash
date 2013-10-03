@@ -20,10 +20,8 @@
    (parameterize 
        ([current-custodian (make-custodian)])
      (current-subprocess-custodian-mode #f)
-     (let*-values
-         ([(to) (open-output-file outfile #:mode 'text #:exists 'replace)]
-          [(sub in out err) (subprocess #f to (current-output-port) md5 "-q" infile)])
-       (begin
-         (subprocess-wait sub)
-         (custodian-shutdown-all (current-custodian))
-         (subprocess-status sub))))))
+     (define to (open-output-file outfile #:mode 'text #:exists 'replace))
+     (define-values (sub in out err) (subprocess #f to (current-output-port) md5 "-q" infile))
+     (subprocess-wait sub)
+     (custodian-shutdown-all (current-custodian))
+     (subprocess-status sub)))
