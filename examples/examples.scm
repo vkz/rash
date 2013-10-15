@@ -1,6 +1,6 @@
 ;; TODO
 ;; (1) (awk ...) deserves a separate section
-;; (2) 
+;; (2)
 
 ;; ====================
 ;; A Scheme Shell paper
@@ -41,7 +41,7 @@
 ;; messages going to our stderr. Notice we are redirecting Scheme data
 ;; structures (the strings PLAINTEXT and KEY) from our program into
 ;; the DES process, instead of redirecting from files. RUN/STRING is
-;; like the RUN form, but it collects the output into a string and 
+;; like the RUN form, but it collects the output into a string and
 ;; returns it (see following section).
 
 ;; (run/string (/usr/shivers/bin/des -e -3)
@@ -56,7 +56,7 @@
 ;; find all directories in the current directory
 ;; collect them in a list
 (filter (lambda (fname)
-          (eq? 'directory 
+          (eq? 'directory
                (fileinfo:type (file-attributes fname))))
         (directory-files))
 
@@ -65,11 +65,11 @@
 
 ;; First-class procedures also allow iterators such as
 ;; for-each and filter to loop over lists of data
-;; --------------------------------------------------- 
+;; ---------------------------------------------------
 ;; build the list of all my files in /usr/tmp
 (filter (lambda (f) (= (file-owner f) (user-uid)))
         (glob "/usr/tmp/*"))
-;; --------------------------------------------------- 
+;; ---------------------------------------------------
 ;; delete every C file in my directory
 (for-each delete-file (glob "*.c"))
 
